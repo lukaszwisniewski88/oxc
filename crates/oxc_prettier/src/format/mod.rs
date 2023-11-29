@@ -61,7 +61,7 @@ impl<'a> Format<'a> for Program<'a> {
         let mut parts = p.vec();
         if let Some(hashbang) = &self.hashbang {
             parts.push(hashbang.format(p));
-            if p.is_next_line_empty(hashbang.span.end - 1) {
+            if p.is_next_line_empty_after_index(hashbang.span.end - 1) {
                 parts.extend(hardline!());
             }
         }
@@ -427,7 +427,7 @@ impl<'a> Format<'a> for SwitchStatement<'a> {
                     parts.push(format!(p, case));
                     Doc::Indent(parts)
                 });
-                if i != len - 1 && p.is_next_line_empty(case.span.end) {
+                if i != len - 1 && p.is_next_line_empty(case.span) {
                     cases_parts.extend(hardline!());
                 }
             }
@@ -467,7 +467,7 @@ impl<'a> Format<'a> for SwitchCase<'a> {
 
             if i != 0 && matches!(stmt, Statement::BreakStatement(_)) {
                 let last_stmt = &consequent[i - 1];
-                if p.is_next_line_empty(last_stmt.span().end) {
+                if p.is_next_line_empty(last_stmt.span()) {
                     consequent_parts.extend(hardline!());
                 }
             }
@@ -1455,11 +1455,7 @@ impl<'a> Format<'a> for ArrayExpression<'a> {
 impl<'a> Format<'a> for ObjectExpression<'a> {
     fn format(&self, p: &mut Prettier<'a>) -> Doc<'a> {
         wrap!(p, self, ObjectExpression, {
-            object::print_object_properties(
-                p,
-                &ObjectLike::ObjectExpression(self),
-                &self.properties,
-            )
+            object::print_object_properties(p, ObjectLike::Expression(self))
         })
     }
 }
@@ -1698,11 +1694,7 @@ impl<'a> Format<'a> for AssignmentTargetMaybeDefault<'a> {
 
 impl<'a> Format<'a> for ObjectAssignmentTarget<'a> {
     fn format(&self, p: &mut Prettier<'a>) -> Doc<'a> {
-        object::print_object_properties(
-            p,
-            &ObjectLike::ObjectAssignmentTarget(self),
-            &self.properties,
-        )
+        object::print_object_properties(p, ObjectLike::AssignmentTarget(self))
     }
 }
 
@@ -2074,7 +2066,7 @@ impl<'a> Format<'a> for BindingPattern<'a> {
 
 impl<'a> Format<'a> for ObjectPattern<'a> {
     fn format(&self, p: &mut Prettier<'a>) -> Doc<'a> {
-        object::print_object_properties(p, &ObjectLike::ObjectPattern(self), &self.properties)
+        object::print_object_properties(p, ObjectLike::Pattern(self))
     }
 }
 

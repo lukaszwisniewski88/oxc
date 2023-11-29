@@ -154,6 +154,7 @@ mod unicorn {
     pub mod filename_case;
     pub mod new_for_builtins;
     pub mod no_abusive_eslint_disable;
+    pub mod no_await_expression_member;
     pub mod no_console_spaces;
     pub mod no_document_cookie;
     pub mod no_empty_file;
@@ -171,6 +172,7 @@ mod unicorn {
     pub mod no_this_assignment;
     pub mod no_typeof_undefined;
     pub mod no_unnecessary_await;
+    pub mod no_unreadable_iife;
     pub mod no_useless_fallback_in_spread;
     pub mod no_useless_length_check;
     pub mod no_useless_promise_resolve_reject;
@@ -330,6 +332,7 @@ oxc_macros::declare_all_lint_rules! {
     unicorn::filename_case,
     unicorn::new_for_builtins,
     unicorn::no_abusive_eslint_disable,
+    unicorn::no_await_expression_member,
     unicorn::no_console_spaces,
     unicorn::no_document_cookie,
     unicorn::no_empty_file,
@@ -347,6 +350,7 @@ oxc_macros::declare_all_lint_rules! {
     unicorn::no_this_assignment,
     unicorn::no_typeof_undefined,
     unicorn::no_unnecessary_await,
+    unicorn::no_unreadable_iife,
     unicorn::no_useless_fallback_in_spread,
     unicorn::no_useless_length_check,
     unicorn::no_useless_promise_resolve_reject,

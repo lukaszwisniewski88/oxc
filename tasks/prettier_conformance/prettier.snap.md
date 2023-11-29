@@ -1,4 +1,4 @@
-Compatibility: 193/580 (33.28%)
+Compatibility: 196/580 (33.79%)
 
 # Failed
 
@@ -123,9 +123,6 @@ Compatibility: 193/580 (33.28%)
 ### class-extends
 * class-extends/extends.js
 * class-extends/tuple-and-record.js
-
-### class-static-block
-* class-static-block/class-static-block.js
 
 ### classes
 * classes/assignment.js
@@ -299,9 +296,6 @@ Compatibility: 193/580 (33.28%)
 * functional-composition/redux_connect.js
 * functional-composition/reselect_createselector.js
 * functional-composition/rxjs_pipe.js
-
-### generator
-* generator/anonymous.js
 
 ### identifier/for-of
 * identifier/for-of/await.js
@@ -550,7 +544,6 @@ Compatibility: 193/580 (33.28%)
 * trailing-comma/es5.js
 * trailing-comma/function-calls.js
 * trailing-comma/jsx.js
-* trailing-comma/object.js
 * trailing-comma/trailing_whitespace.js
 
 ### try
